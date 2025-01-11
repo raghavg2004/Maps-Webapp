@@ -48,11 +48,23 @@ if (navigator.geolocation) {
 } else {
     alert("Geolocation is not supported by your browser.");
 }
-
-// Function to geocode location
+// Function to geocode location (either address or coordinates)
 async function geocode(location) {
     const geocoder = platform.getSearchService();
     return new Promise((resolve, reject) => {
+        // Check if location is already in lat, lng format
+        const coords = location.split(",");
+        if (coords.length === 2) {
+            const lat = parseFloat(coords[0].trim());
+            const lng = parseFloat(coords[1].trim());
+            if (!isNaN(lat) && !isNaN(lng)) {
+                // If valid coordinates, return them directly
+                resolve({ lat, lng });
+                return;
+            }
+        }
+
+        // Otherwise, geocode the address
         geocoder.geocode(
             { q: location },
             (result) => {
@@ -89,7 +101,7 @@ function calculateRoute(origin, destination) {
 
             // Display the route on the map
             routeLine = new H.map.Polyline(lineString, {
-                style: { strokeColor: "blue", lineWidth: 5 }
+                style: { strokeColor: "green", lineWidth: 5 }
             });
             map.addObject(routeLine);
 
