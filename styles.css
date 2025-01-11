@@ -1,41 +1,147 @@
-body {
+/* Reset default margins and padding for consistency */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
+  background-color: #f4f4f9; /* Light background for contrast */
+  overflow: hidden;
 }
 
 #mapContainer {
   width: 100%;
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
+  position: relative;
+  background-color: #ddd; /* For better contrast during testing */
 }
+
+/* Fixed left-side navigation bar */
 #search-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px; /* Fixed width for the side navigation */
+  height: 100%; /* Full height of the screen */
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 20px;
+  border-right: 2px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items at the top */
+  align-items: stretch; /* Stretch the items to fill the width */
+  gap: 15px; /* Space between input and buttons */
+  z-index: 1000; /* Ensure it overlays above the map */
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  border-radius: 0 15px 15px 0; /* Rounded top-right and bottom-right corners */
 }
 
+/* Container for the left side (inputs) */
+#search-container .left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%; /* Full width */
+}
+
+/* Container for the right side (buttons) */
+#search-container .right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%; /* Full width */
+}
+
+/* Input fields styling */
 #search-container input {
-  width: 200px;
-  margin-right: 5px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin: 0;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
+/* On focus, change border color */
+#search-container input:focus {
+  border-color: #0078D7;
+}
+
+/* Button styling */
 #search-container button {
-  padding: 6px 10px;
+  padding: 8px 12px;
   background-color: #0078D7;
   color: white;
+  font-size: 14px;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
+/* Hover and active states for buttons */
 #search-container button:hover {
   background-color: #005bb5;
+  transform: scale(1.05);
+}
+
+/* Disabled button state */
+#search-container button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Style for Start Navigation button (green) */
+#startNav {
+  background-color: #28a745 !important; /* Green color for start button */
+}
+
+#startNav:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Specific style for Stop Navigation button (red) */
+#stopNav {
+  background-color: #ff0000 !important; /* Force red background color */
+}
+
+#stopNav:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Make the UI more responsive for mobile devices */
+@media (max-width: 768px) {
+  #search-container {
+    padding: 8px 15px;
+  }
+
+  #search-container .left, #search-container .right {
+    width: 100%; /* Both the left and right sections will take full width */
+  }
+
+  #search-container input, #search-container button {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+/* For smaller screens */
+@media (max-width: 480px) {
+  #search-container {
+    padding: 6px 10px;
+  }
+
+  #search-container input, #search-container button {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  #search-container button {
+    padding: 8px;
+  }
 }
