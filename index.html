@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERE Maps Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css">
+</head>
+<body>
+  <div id="search-container">
+      <input type="text" id="origin" placeholder="Enter starting location">
+      <input type="text" id="destination" placeholder="Enter destination">
+      <button id="searchButton">Search Route</button>
+      <button id="startNav" disabled>Start Navigation</button>
+      <button id="stopNav" disabled>Stop Navigation</button>
+  </div>
+  <div id="mapContainer"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
